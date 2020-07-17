@@ -1,0 +1,10 @@
+{% extends 'video/base.html' %}
+{% load static %}
+{% block content %}
+<form action="{% url 'imageform_upload' %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">アップロード</button>
+</form>
+
+{% endblock %}
