@@ -7,3 +7,4 @@ __pycache__/
 /backend/media/
 /backend/video/migrations
 /backend/db.sqlite3
+backend/.env
