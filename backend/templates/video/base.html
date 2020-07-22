@@ -6,7 +6,7 @@
     <title>Video Uploader</title>
   </head>
   <body>
-    <a href="/">Home</a> | <a href="{% url 'modelform_upload' %}">動画投稿</a> | <a href="{% url 'imageform_upload' %}">画像投稿</a>
+    <a href="{% url 'home' %}">Home</a> | <a href="{% url 'modelform_upload' %}">動画投稿</a> | <a href="{% url 'imageform_upload' %}">画像投稿</a>
     {% block content %} {% endblock %}
   </body>
 </html>
