@@ -1,0 +1,10 @@
+{% extends 'video/base.html' %}
+
+{% block content %}
+<h1>new comment</h1>
+<form method="POST" class="post-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="save btn btn-secondary">Send</button>
+</form>
+{% endblock %}

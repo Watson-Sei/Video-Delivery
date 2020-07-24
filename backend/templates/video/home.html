@@ -1,6 +1,19 @@
 {% extends 'video/base.html' %}
 
+{% load static %}
 
 {% block content %}
 <h1>home.html</h1>
+<ul>
+    {% for video in video_list %}
+        <li>
+            {{ video.title }}
+            <hr>
+            <a href="{% url 'video_detail' pk=video.pk %}">
+                <img src="/media/{{ video.thumbnail }}" style="width: 300px; height: auto;">
+            </a>
+            <a href="{% url 'video_detail' pk=video.pk %}">Comments: {{ video.comments.count }}</a>
+        </li>
+    {% endfor %}
+</ul>
 {% endblock %}

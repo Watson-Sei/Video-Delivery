@@ -1,0 +1,37 @@
+{% extends 'video/base.html' %}
+
+{% load static %}
+
+{% block head %}
+<style>
+    .video-setting {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .comment {
+        margin: 20px 0px 20px 20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div>
+    <h1><strong>{{ video.title }}</strong></h1>
+    <hr>
+    <video src="/media/{{ video.video }}" controls autoplay style="width: 700px; height: auto; " class="video-setting"></video>
+</div>
+<hr>
+<a class="btn btn-secondary" href="{% url 'add_comment_to_video' pk=video.pk %}">Add Comment</a>
+<div>
+    {% for comment in video.comments.all %}
+        <div class="comment">
+            <div class="date">{{ comment.created_date }}</div>
+            <strong>{{ comment.author }}</strong>
+            <p>{{ comment.text|linebreaks }}</p>
+        </div>
+    {% empty %}
+        <p>No comments here yet :(</p>
+    {% endfor %}
+</div>
+{% endblock %}
