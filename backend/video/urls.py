@@ -2,6 +2,7 @@ from django.urls import path
 from .views import  home, modelform_upload, imageform_upload,video_detail, add_comment_to_video
 
 urlpatterns = [
+    path('', home, name='home'),
     path('home/', home, name='home'),
     path('modelform_upload/', modelform_upload, name='modelform_upload'),
     path('imageform_upload/', imageform_upload, name='imageform_upload'),
