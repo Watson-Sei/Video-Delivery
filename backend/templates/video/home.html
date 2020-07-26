@@ -3,11 +3,11 @@
 {% load static %}
 
 {% block content %}
-<h1>home.html</h1>
+<h3 style="text-align: center; padding-top: 20px;"><strong>{{ video_list.count }}件が見つかりました。</strong></h3>
 <ul>
     {% for video in video_list %}
         <li>
-            {{ video.title }}
+            <strong>{{ video.title }}</strong>
             <hr>
             <a href="{% url 'video_detail' pk=video.pk %}">
                 <img src="/media/{{ video.thumbnail }}" style="width: 300px; height: auto;">

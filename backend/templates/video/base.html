@@ -10,13 +10,44 @@
     {% endblock %}
   </head>
   <body>
-    <a href="{% url 'home' %}">Home</a> | <a href="{% url 'modelform_upload' %}">動画投稿</a> | <a href="{% url 'imageform_upload' %}">画像投稿</a> |<br>
-    {% if user.is_authenticated %}
-    ようこそ{{ user }}さん
-    <p><a href="{% url 'account_logout' %}">ログアウト</a></p>
-    {% else %}
-    <p><a href="{% url 'account_login' %}">ログイン</a></p>
-    {% endif %}
+    <div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'home' %}">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'modelform_upload' %}">Video Upload</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'imageform_upload' %}">Image Upload</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ user }}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                {% if user.is_authenticated %}
+                  <a class="dropdown-item" href="{% url 'account_logout' %}">ログアウト</a>
+                {% else %}
+                  <a class="dropdown-item" href="{% url 'account_login' %}">ログイン</a>
+                {% endif %}
+              </div>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'home' %}">
+            {% csrf_token %}
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    </div>
     {% block content %} {% endblock %}
     <!-- JS, Popper.js, and jQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

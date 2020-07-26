@@ -37,10 +37,17 @@ def imageform_upload(request):
 
 @login_required
 def home(request):
-    context = {
-        'username': request.user,
-        'video_list': VideoContent.objects.all()
-    }
+    if request.method == 'POST':
+        context = {
+            'username': request.user,
+            'video_list': VideoContent.objects.filter(title__icontains=request.POST['search'])
+        }
+
+    else:
+        context = {
+            'username': request.user,
+            'video_list': VideoContent.objects.all()
+        }
     return render(request, 'video/home.html', context)
 
 
